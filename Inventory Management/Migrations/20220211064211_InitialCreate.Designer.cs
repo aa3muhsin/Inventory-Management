@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Inventory_Management.Migrations
 {
-    [DbContext(typeof(ITAssetManagementContext))]
-    [Migration("20220211043254_InitialCreate")]
+    [DbContext(typeof(InventoryManagementContext))]
+    [Migration("20220211064211_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

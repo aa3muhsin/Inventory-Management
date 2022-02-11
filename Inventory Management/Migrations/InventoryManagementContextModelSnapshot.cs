@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Inventory_Management.Migrations
 {
-    [DbContext(typeof(ITAssetManagementContext))]
-    partial class ITAssetManagementContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(InventoryManagementContext))]
+    partial class InventoryManagementContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
