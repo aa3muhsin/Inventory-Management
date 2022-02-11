@@ -18,6 +18,15 @@ namespace Inventory_Management.Data
             builder.HasIndex(s => s.StaffNumber).IsUnique();
 
             builder.HasOne(s => s.Department).WithMany(d => d.Staffs).HasForeignKey(s => s.DepartmentId);
+
+            builder.HasData(
+                new Staff { Id = 1, StaffNumber = "A001", NationalIdentificationNumber = "A123456", Name = "Ahmed Mohamed", DepartmentId = 1 },
+                new Staff { Id = 2, StaffNumber = "A002", NationalIdentificationNumber = "A223422", Name = "Hussain Ali", DepartmentId = 1 },
+                new Staff { Id = 3, StaffNumber = "B003", NationalIdentificationNumber = "A323433", Name = "Fathimath Moosa Manik", DepartmentId = 2 },
+                new Staff { Id = 4, StaffNumber = "A017", NationalIdentificationNumber = "A423444", Name = "Ibrahim Hussain", DepartmentId = 2 },
+                new Staff { Id = 5, StaffNumber = "EE01", NationalIdentificationNumber = "A523455", Name = "Aishath Mariyam", DepartmentId = 3 },
+                new Staff { Id = 6, StaffNumber = "AE001", NationalIdentificationNumber = "A623466", Name = "Hassan Ali Ibrahim", DepartmentId = 3 }
+            );
         }
     }
 }

@@ -11,21 +11,32 @@ using Inventory_Management.Models;
 
 namespace Inventory_Management.Pages
 {
-    public class IndexModel : PageModel
+    public class DetailsModel : PageModel
     {
         private readonly Inventory_Management.Data.InventoryManagementContext _context;
 
-        public IndexModel(Inventory_Management.Data.InventoryManagementContext context)
+        public DetailsModel(Inventory_Management.Data.InventoryManagementContext context)
         {
             _context = context;
         }
 
-        public IList<Asset> Asset { get;set; }
+        public Asset Asset { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             Asset = await _context.Assets
-                .Include(a => a.AssetType).ToListAsync();
+                .Include(a => a.AssetType).FirstOrDefaultAsync(m => m.Id == id);
+
+            if (Asset == null)
+            {
+                return NotFound();
+            }
+            return Page();
         }
     }
 }
