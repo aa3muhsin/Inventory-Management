@@ -1,4 +1,5 @@
 using Inventory_Management.Data;
+using Inventory_Management.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContextPool<InventoryManagementContext>(options => options.UseSqlite(
                builder.Configuration.GetConnectionString("DefaultConnection")
            ));
+builder.Services.AddTransient<IAssetService, AssetService>();
+builder.Services.AddTransient<IStaffService, StaffService>();
 
 var app = builder.Build();
 
