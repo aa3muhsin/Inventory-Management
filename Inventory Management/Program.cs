@@ -1,8 +1,11 @@
+using Inventory_Management.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContextPool<ITAssetManagementContext>(options => options.UseSqlite(
+builder.Services.AddDbContextPool<InventoryManagementContext>(options => options.UseSqlite(
                builder.Configuration.GetConnectionString("DefaultConnection")
            ));
 
