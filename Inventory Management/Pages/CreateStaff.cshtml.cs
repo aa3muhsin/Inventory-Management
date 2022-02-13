@@ -29,9 +29,16 @@ namespace Inventory_Management.Pages
         [BindProperty]
         public Staff Staff { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            Random random = new Random();
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            string StaffNumber = new string(Enumerable.Repeat(chars, 5)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            Staff.StaffNumber = StaffNumber;
+
             if (!ModelState.IsValid)
             {
                 return Page();
