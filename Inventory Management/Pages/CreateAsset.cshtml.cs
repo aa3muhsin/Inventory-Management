@@ -32,12 +32,20 @@ namespace Inventory_Management.Pages
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
+            Random random = new Random();
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            string AssetNumber = new string(Enumerable.Repeat(chars, 8)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+
+            Asset.AssetNumber = AssetNumber;
+            Asset.Status = AssetStatus.NotAssigned;
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            Asset.Status = AssetStatus.NotAssigned;
             _context.Assets.Add(Asset);
             await _context.SaveChangesAsync();
 

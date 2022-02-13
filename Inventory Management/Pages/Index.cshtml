@@ -38,9 +38,9 @@
                 @Html.DisplayFor(modelItem => item.AssetType.Name)
             </div>
             <div class="d-flex col">
-                <a asp-page="./EditAsset" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./AssetDetails" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./DiscardAsset" asp-route-id="@item.Id">Delete</a>
+                <a class="btn btn-primary asp-page="./EditAsset" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary asp-page="./AssetDetails" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-primary asp-page="./DiscardAsset" asp-route-id="@item.Id">Delete</a>
             </div>
         </div>
 }
