@@ -1,0 +1,33 @@
+﻿@page
+@model Inventory_Management.Pages.StaffModel
+
+<div class="row">
+    <div class="col"><h3>Staff</h3></div>
+    <div class="d-flex col justify-content-end">
+        <p>
+            <a asp-page="CreateStaff" class="btn btn-primary">Create New</a>
+        </p>
+    </div>
+</div>
+
+@foreach (var item in Model.Staff) {
+        <div class="row mb-3">
+            <td>
+                @Html.DisplayFor(modelItem => item.StaffNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalIdentificationNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                <a asp-page="./EditStaff" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./StaffDetails" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./DeleteStaff" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </div>
+}

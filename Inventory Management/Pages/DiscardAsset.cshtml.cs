@@ -11,11 +11,11 @@ using Inventory_Management.Models;
 
 namespace Inventory_Management.Pages
 {
-    public class DeleteModel : PageModel
+    public class DiscardAssetModel : PageModel
     {
         private readonly Inventory_Management.Data.InventoryManagementContext _context;
 
-        public DeleteModel(Inventory_Management.Data.InventoryManagementContext context)
+        public DiscardAssetModel(Inventory_Management.Data.InventoryManagementContext context)
         {
             _context = context;
         }

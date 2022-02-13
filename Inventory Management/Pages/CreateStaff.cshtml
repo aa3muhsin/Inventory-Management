@@ -1,0 +1,38 @@
+﻿@page
+@model Inventory_Management.Pages.CreateStaffModel
+
+<h4>Staff</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Staff.StaffNumber" class="control-label">Staff number</label>
+                <input asp-for="Staff.StaffNumber" class="form-control" />
+                <span asp-validation-for="Staff.StaffNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Staff.NationalIdentificationNumber" class="control-label">National ID number</label>
+                <input asp-for="Staff.NationalIdentificationNumber" class="form-control" />
+                <span asp-validation-for="Staff.NationalIdentificationNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Staff.Name" class="control-label">Name</label>
+                <input asp-for="Staff.Name" class="form-control" />
+                <span asp-validation-for="Staff.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Staff.DepartmentId" class="control-label">Department</label>
+                <select asp-for="Staff.DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+            </div>
+            <div class="form-group mb-3">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

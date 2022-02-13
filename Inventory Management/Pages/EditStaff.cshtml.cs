@@ -12,17 +12,17 @@ using Inventory_Management.Models;
 
 namespace Inventory_Management.Pages
 {
-    public class EditModel : PageModel
+    public class EditStaffModel : PageModel
     {
         private readonly Inventory_Management.Data.InventoryManagementContext _context;
 
-        public EditModel(Inventory_Management.Data.InventoryManagementContext context)
+        public EditStaffModel(Inventory_Management.Data.InventoryManagementContext context)
         {
             _context = context;
         }
 
         [BindProperty]
-        public Asset Asset { get; set; }
+        public Staff Staff { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -31,14 +31,14 @@ namespace Inventory_Management.Pages
                 return NotFound();
             }
 
-            Asset = await _context.Assets
-                .Include(a => a.AssetType).FirstOrDefaultAsync(m => m.Id == id);
+            Staff = await _context.Staffs
+                .Include(s => s.Department).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Asset == null)
+            if (Staff == null)
             {
                 return NotFound();
             }
-           ViewData["TypeId"] = new SelectList(_context.AssetTypes, "Id", "Name");
+           ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             return Page();
         }
 
@@ -51,7 +51,7 @@ namespace Inventory_Management.Pages
                 return Page();
             }
 
-            _context.Attach(Asset).State = EntityState.Modified;
+            _context.Attach(Staff).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace Inventory_Management.Pages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AssetExists(Asset.Id))
+                if (!StaffExists(Staff.Id))
                 {
                     return NotFound();
                 }
@@ -72,9 +72,9 @@ namespace Inventory_Management.Pages
             return RedirectToPage("./Index");
         }
 
-        private bool AssetExists(int id)
+        private bool StaffExists(int id)
         {
-            return _context.Assets.Any(e => e.Id == id);
+            return _context.Staffs.Any(e => e.Id == id);
         }
     }
 }

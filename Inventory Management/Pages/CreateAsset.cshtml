@@ -1,0 +1,32 @@
+﻿@page
+@model Inventory_Management.Pages.CreateAssetModel
+
+@{
+    ViewData["Title"] = "Create Asset";
+}
+
+<h4>Asset</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <label asp-for="Asset.PurchasedDate" class="control-label"></label>
+                <input asp-for="Asset.PurchasedDate" class="form-control" />
+                <span asp-validation-for="Asset.PurchasedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Asset.TypeId" class="control-label"></label>
+                <select asp-for="Asset.TypeId" class ="form-control" asp-items="ViewBag.TypeId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

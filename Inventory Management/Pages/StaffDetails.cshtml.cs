@@ -11,16 +11,16 @@ using Inventory_Management.Models;
 
 namespace Inventory_Management.Pages
 {
-    public class DetailsModel : PageModel
+    public class StaffDetailsModel : PageModel
     {
         private readonly Inventory_Management.Data.InventoryManagementContext _context;
 
-        public DetailsModel(Inventory_Management.Data.InventoryManagementContext context)
+        public StaffDetailsModel(Inventory_Management.Data.InventoryManagementContext context)
         {
             _context = context;
         }
 
-        public Asset Asset { get; set; }
+        public Staff Staff { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,10 +29,10 @@ namespace Inventory_Management.Pages
                 return NotFound();
             }
 
-            Asset = await _context.Assets
-                .Include(a => a.AssetType).FirstOrDefaultAsync(m => m.Id == id);
+            Staff = await _context.Staffs
+                .Include(s => s.Department).FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Asset == null)
+            if (Staff == null)
             {
                 return NotFound();
             }

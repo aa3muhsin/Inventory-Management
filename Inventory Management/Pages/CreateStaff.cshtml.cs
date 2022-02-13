@@ -11,23 +11,23 @@ using Inventory_Management.Models;
 
 namespace Inventory_Management.Pages
 {
-    public class CreateModel : PageModel
+    public class CreateStaffModel : PageModel
     {
         private readonly Inventory_Management.Data.InventoryManagementContext _context;
 
-        public CreateModel(Inventory_Management.Data.InventoryManagementContext context)
+        public CreateStaffModel(Inventory_Management.Data.InventoryManagementContext context)
         {
             _context = context;
         }
 
         public IActionResult OnGet()
         {
-        ViewData["TypeId"] = new SelectList(_context.AssetTypes, "Id", "Name");
+        ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             return Page();
         }
 
         [BindProperty]
-        public Asset Asset { get; set; }
+        public Staff Staff { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -37,7 +37,7 @@ namespace Inventory_Management.Pages
                 return Page();
             }
 
-            _context.Assets.Add(Asset);
+            _context.Staffs.Add(Staff);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
